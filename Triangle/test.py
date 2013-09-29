@@ -61,8 +61,9 @@ class test(unittest.TestCase):
         self.assertEqual(detect_triangle(2**32-1, 4, 2**32-1), "Tam giac can\n")
         print "Test case 21: a = %r, b = %r, c = %r" % ("2**32-1","2**32-1",4)
         self.assertEqual(detect_triangle(2**32-1, 2**32-1, 4), "Tam giac can\n")
+    # Gioi han 2**26 khi co mot bien < 1
         print "Test case 22: a = %r, b = %r, c = %r" % ("2**32-1","2**32-1",4)
-        self.assertEqual(detect_triangle(2**32-1, 2**32-1, 1e-9), "Tam giac can\n")
+        self.assertEqual(detect_triangle(2**26, 2**26, 1**-10), "Tam giac can\n")
     def testTGdeu(self):    # Tam giac deu
         print "Test case 23: a = %r, b = %r, c = %r" % (2,2,2)
         self.assertEqual(detect_triangle(2.0, 2.0, 2.0), "Tam giac deu\n")
@@ -82,7 +83,8 @@ class test(unittest.TestCase):
         self.assertEqual(detect_triangle(3, 5.0, 7.0), "Tam giac binh thuong\n")
         print "Test case 30: a = %r, b = %r, c = %r" % (2, "2^32-1", "2^32-2")
         self.assertEqual(detect_triangle(2, 2**31-5, 2**31-4), "Tam giac binh thuong\n")
-        print "Test case 31: a = %r, b = %r, c = %r" % (2e-10, 3e-10, 4e-10)
+    # Gioi han 10**-5 cho e = 10**-10
+        print "Test case 31: a = %r, b = %r, c = %r" % (2e-5, 3e-5, 4e-5)
         self.assertEqual(detect_triangle(2e-5, 3e-5, 4e-5), "Tam giac binh thuong\n")
 def main():
     unittest.main()

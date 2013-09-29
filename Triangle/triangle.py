@@ -4,8 +4,9 @@ Created on Sep 29, 2013
 @author: KHANHTRINH
 '''
 import math
-
+#from decimal import getcontext
 def detect_triangle(a, b, c):
+#    getcontext().prec = 10
     #if False not in [type(i) in [float, int] for i in (x,y,z)]
     #if type[a,b,c] in [float, int]:
     if ((type(a) in [float, long, int]) and (type(b) in [float, long, int]) and (type(c) in [float, long, int])
