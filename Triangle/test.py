@@ -43,9 +43,11 @@ class test(unittest.TestCase):
         print "Test case 13: a = %r, b = %r, c = %r" % (3,4,5)
         self.assertEqual(detect_triangle(3.0, 4.0, 5.0), "Tam giac vuong\n")
         print "Test case 14: a = %r, b = %r, c = %r" % (5*1e-10, 4*1e-10,3*1e-10)
-        self.assertEqual(detect_triangle(3*1e-10, 4*1e-10,5*1e-10), "Tam giac vuong\n")
+        self.assertEqual(detect_triangle(5*1e-10, 3*1e-10,4*1e-10), "Tam giac vuong\n")
         print "Test case 15: a = %r, b = %r, c = %r" % (4*2**31, 5*2**31,3*2**31)
         self.assertEqual(detect_triangle(4*2**29, 5*2**29,3*2**29), "Tam giac vuong\n")
+        print "Test case 15: a = %r, b = %r, c = %r" % (8.0,math.sqrt(48),4.0)
+        self.assertEqual(detect_triangle(8.0,math.sqrt(48),4.0), "Tam giac vuong\n")
     def testTGcan(self):    # Tam giac can
         print "Test case 16: a = %r, b = %r, c = %r" % (2,2,1)
         self.assertEqual(detect_triangle(2.0, 2.0, 1.0), "Tam giac can\n")
@@ -60,7 +62,7 @@ class test(unittest.TestCase):
         print "Test case 21: a = %r, b = %r, c = %r" % ("2**32-1","2**32-1",4)
         self.assertEqual(detect_triangle(2**32-1, 2**32-1, 4), "Tam giac can\n")
         print "Test case 22: a = %r, b = %r, c = %r" % ("2**32-1","2**32-1",4)
-        self.assertEqual(detect_triangle(2**32-1, 2**32-1, 4), "Tam giac can\n")
+        self.assertEqual(detect_triangle(2**32-1, 2**32-1, 1e-9), "Tam giac can\n")
     def testTGdeu(self):    # Tam giac deu
         print "Test case 23: a = %r, b = %r, c = %r" % (2,2,2)
         self.assertEqual(detect_triangle(2.0, 2.0, 2.0), "Tam giac deu\n")
@@ -81,7 +83,7 @@ class test(unittest.TestCase):
         print "Test case 30: a = %r, b = %r, c = %r" % (2, "2^32-1", "2^32-2")
         self.assertEqual(detect_triangle(2, 2**31-5, 2**31-4), "Tam giac binh thuong\n")
         print "Test case 31: a = %r, b = %r, c = %r" % (2e-10, 3e-10, 4e-10)
-        self.assertEqual(detect_triangle(2e-10, 3e-10, 4e-10), "Tam giac binh thuong\n")
+        self.assertEqual(detect_triangle(2e-5, 3e-5, 4e-5), "Tam giac binh thuong\n")
 def main():
     unittest.main()
 

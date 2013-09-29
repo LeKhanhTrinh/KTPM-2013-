@@ -19,7 +19,7 @@ def detect_triangle(a, b, c):
                     return "Tam giac vuong can\n"
                 else:
                     return"Tam giac can\n"
-            elif (a*a + b*b == c*c) or (c*c + b*b == a*a) or (a*a + c*c == b*b):
+            elif (math.fabs(c*c - b*b - a*a) < 1e-10) or (math.fabs(b*b - c*c - a*a) < 1e-10) or (math.fabs(a*a - b*b - c*c) < 1e-10):
                 return"Tam giac vuong\n"
             else:
                 return"Tam giac binh thuong\n" 
