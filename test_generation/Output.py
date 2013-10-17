@@ -81,11 +81,11 @@ Tach nho cac dieu kien trong hang:
 def quantityOfCondition(conditionLine):
     tempVariable = conditionLine[0:conditionLine.index(":")]
     variable.append(tempVariable)
-    temp1 = conditionLine[conditionLine.index(":")+2:len(conditionLine)]
+    temp1 = conditionLine[conditionLine.index(":")+1:len(conditionLine)].strip()
     listOfTempCondition = []
     while temp1!="":
-        listOfTempCondition.append(temp1[1:temp1.index("]")])   #substring
-        temp1 = temp1[temp1.index("]")+1:len(temp1)]
+        listOfTempCondition.append(temp1[1:temp1.index("]")].strip())   #substring
+        temp1 = temp1[temp1.index("]")+1:len(temp1)].strip()
     return listOfTempCondition
 
 '''
@@ -98,8 +98,8 @@ def detailOfListCondition(listcondition):
     emax=[]
     emin=[]
     for eachCondition in listcondition:
-        mini = eachCondition[0:eachCondition.index(";")]
-        maxi = eachCondition[eachCondition.index(";")+2:len(eachCondition)]
+        mini = eachCondition[0:eachCondition.index(";")].strip()
+        maxi = eachCondition[eachCondition.index(";")+1:len(eachCondition)].strip()
         emax.append(int(maxi))
         emin.append(int(mini))
     bubblesort(emin,emax)
@@ -213,7 +213,7 @@ def test_generator(a, b):
 if __name__ == '__main__':
     #print checkFail
     if checkFail == False:
-        raise Exception("Invalid input")
+        raise Exception("wrong input")
         #setattr(TestSequense, "Exception: Input Data is Invalid", "")
     else:
         for i in range(tongTest):
