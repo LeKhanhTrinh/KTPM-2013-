@@ -59,7 +59,8 @@ with open("Input.py") as fp:
         if "main" in line:
             inMain = True
         if (inMain == True) and ("return" in line):
-            result.append(line[line.index("'")+1:len(line)-2]) 
+            line = line[line.index("'")+1:len(line)].strip()
+            result.append(line[0:line.index("'")].strip()) 
         #if inMain == True:
             
         '''
@@ -201,6 +202,12 @@ listTest = createTestCase(bandau)
 tongTest = len(listTest)
 n = len(variable)
 
+def checkEqual(a, listS):
+    for i in range(len(listS)):
+        if a == listS[i]:
+            return a
+    return "none"
+
 class TestSequense(unittest.TestCase):
         pass
 
@@ -218,13 +225,8 @@ if __name__ == '__main__':
     else:
         for i in range(tongTest):
             test_name = 'test_%s' % (i+1)
-            
-            value = 'main('
-            for j in range(n-1):
-                value = value + '%d'%listTest[i][j] + ','
-            value = value + '%d'%listTest[i][len(listTest[i])-1] + ')'
-            print main(*listTest[i])
-            setOfTest = test_generator(main(*listTest[i]), "my unittest")
+            #print main(*listTest[i])
+            setOfTest = test_generator(main(*listTest[i]), checkEqual(main(*listTest[i]), result))
             setattr(TestSequense, test_name, setOfTest)
     
     unittest.main()
