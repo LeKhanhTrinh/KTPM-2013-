@@ -1,0 +1,84 @@
+*** Settings ***
+
+Documentation  A resource file containing the demo app specific keywords and variables that create our own domain specific language. Also SeleniumLibrary itself is imported here so that tests only need to import this resource file.
+
+Library        Selenium2Library
+
+
+*** Variables ***
+
+${BROWSER}       ff
+${DELAY}         0
+${HOST}          truongnha.com
+${LOGIN URL}     http://${HOST}/login/
+${WELCOME URL}   http://${HOST}/school/
+${DETAIL URL}	 http://${HOST}/school/viewClassDetail
+${TIMETAB URL}	 http://${HOST}/school/timeTable/1490
+${TIMETABLE URL}   http://${HOST}/school/timeTable
+${DT URL}		 viewClassDetail/1490
+${VALID USER}    trinhlk
+${VALID PASSWD}  nhom12
+
+*** Keywords ***	
+
+Assign Cell Id  [Arguments]  ${tr}  ${td}  ${r_id}
+	Assign Id To Element  xpath=//tr[@class="${tr}"]/td[@id="${td}"]/select[@class="input-medium"]  ${r_id}
+	
+Assign Class Id  [Arguments]  ${c_id}
+	Assign Id To Element  xpath=//select[@name="class"]  ${c_id}
+
+Click submit
+	Click Button  submitaddTeacher
+		
+Display Welcome Page
+    Location Should Be  ${WELCOME URL}
+
+Display Detail Page  [Arguments]  ${id}
+	Location Should Be  ${DETAIL URL}/${id}
+	
+Display TimeTB Page  [Arguments]  ${id}
+	Location Should Be  ${TIMETABLE URL}/${id}
+	
+Open login page
+    Open Browser  ${LOGIN URL}  ${BROWSER}
+    Set Selenium Speed  ${DELAY}    
+	
+Input Username  [Arguments]  ${username}
+    Input Text  id_username  ${username}
+
+Input Password  [Arguments]  ${password}
+    Input Text  id_password  ${password}
+	
+Go To Login Page
+    Go To  ${LOGIN URL}    
+
+Go To Class  [Arguments]		${cell}
+	Go To  ${TIMETABLE URL}/${cell}
+	
+Go to Welcome Page
+    Go To  ${WELCOME URL}    
+
+Go To Class Selected  [Arguments]  ${c_id}  ${cls}
+	Assign Class Id		${c_id}
+	Set Id X Value Y		${c_id}	${cls}
+	Display TimeTB Page  ${cls}
+	
+Go To Class Page  [Arguments]	${id}
+	Click Link  ${id}
+	
+Set Id X Value Y  [Arguments]		${cell}		${input}
+	Click Element	${cell}
+	Select From List By Value		${cell}	${input}
+	Press Key	${cell}	\\10
+	
+Select Value X And It Should Display Value Y
+	[Arguments]		${cell}		${input}
+	Click Element	${cell}
+	Select From List By Value		${cell}	${input}
+	Press Key	${cell}	\\10	
+
+Submit Credentials
+    Click Button  login
+	
+Submit TimeTable
+	Click Link  btn-lichhoc

@@ -1,0 +1,80 @@
+﻿*** Settings ***
+Documentation  A test suite with a single test for valid login. This test has a workflow that is created using keywords from the resource file.
+
+Resource       resource_TimeTable.txt
+
+
+*** Test Cases ***
+	
+Log in
+	Open login page
+	Input Username	trinhlk
+	Input Password	nhom12
+	Submit Credentials
+    Display Welcome Page
+	
+Go To Time Table
+	Go To Class Page  1490
+	Display Detail Page  1490
+	Submit TimeTable
+	Display TimeTB Page  1490
+
+Insert TimeTable 10A
+	Assign Cell Id  1  2  lh12
+	Set Id X Value Y		lh12	-1
+	Assign Cell Id  1  3  lh13
+	Set Id X Value Y		lh13	21025
+	Assign Cell Id  1  4  lh14
+	Set Id X Value Y		lh14	21026
+	Assign Cell Id  1  5  lh15
+	Set Id X Value Y		lh15	21027
+	Assign Cell Id  1  6  lh16
+	Set Id X Value Y		lh16	21028
+	Assign Cell Id  1  7  lh17
+	Set Id X Value Y		lh17	21029
+	Assign Cell Id  2  2  lh22
+	Set Id X Value Y		lh22	21030
+	Assign Cell Id  2  3  lh23
+	Set Id X Value Y		lh23	21031
+	Assign Cell Id  2  4  lh24
+	Set Id X Value Y		lh24	21032
+	Assign Cell Id  2  5  lh25
+	Set Id X Value Y		lh25	21033
+	Assign Cell Id  2  6  lh26
+	Set Id X Value Y		lh26	21034
+	Assign Cell Id  2  7  lh27
+	Set Id X Value Y		lh27	21035
+	Assign Cell Id  3  2  lh32
+	Set Id X Value Y		lh32	21030
+
+Insert Timetable 10B
+	Go To Class Selected  selectClass  1491
+	Assign Cell Id  1  2  lh12
+	Set Id X Value Y		lh12	-1
+	Assign Cell Id  1  3  lh13
+	Set Id X Value Y		lh13	21039
+	Assign Cell Id  1  4  lh14
+	Set Id X Value Y		lh14	21041
+	Assign Cell Id  1  5  lh15
+	Set Id X Value Y		lh15	21043
+	Assign Cell Id  1  6  lh16
+	Set Id X Value Y		lh16	21045
+	Assign Cell Id  1  7  lh17
+	Set Id X Value Y		lh17	21047
+	Assign Cell Id  2  2  lh22
+	Set Id X Value Y		lh22	21049
+	Assign Cell Id  2  3  lh23
+	Set Id X Value Y		lh23	21051
+	Assign Cell Id  2  4  lh24
+	Set Id X Value Y		lh24	21052
+	Assign Cell Id  2  5  lh25
+	Set Id X Value Y		lh25	21050
+	Assign Cell Id  2  6  lh26
+	Set Id X Value Y		lh26	21048
+	Assign Cell Id  2  7  lh27
+	Set Id X Value Y		lh27	21046
+	Assign Cell Id  3  2  lh32
+	Set Id X Value Y		lh32	21044
+	
+	Go To Class Selected  selectClass  1490
+	[Teardown]  Close Browser
